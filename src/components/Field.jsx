@@ -1,8 +1,6 @@
 import React from 'react'
 
 const Field = (props) => {
-    console.log(props.player)
-
     const styles = ['Field-item'];
 
     switch(props.player) {
