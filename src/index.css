@@ -29,6 +29,10 @@ body {
   border-bottom: 1px solid black;
 }
 
-.Field-item:hover {
-  background-color: lightcoral;
+.Field-x {
+    background-color: lightcoral;
+}
+
+.Field-o {
+    background-color: lightgreen;
 }

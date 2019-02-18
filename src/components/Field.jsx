@@ -1,8 +1,21 @@
 import React from 'react'
 
-const Field = () => {
+const Field = (props) => {
+    console.log(props.player)
+
+    const styles = ['Field-item'];
+
+    switch(props.player) {
+        case 0:
+            styles.push('Field-o')
+            break;
+        case 1:
+            styles.push('Field-x')
+            break;
+    }
+
     return (
-        <div className="Field-item"></div>
+        <div className={styles.join(' ')} onClick={props.onClick}></div>
     )
 }
 
