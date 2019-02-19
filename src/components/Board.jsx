@@ -20,6 +20,7 @@ class Board extends Component {
             })
         }
 
+        // TODO: finish calculation of winner
         this.calculateWinner();
     }
 
@@ -29,15 +30,13 @@ class Board extends Component {
     }
 
     calculateWinner = () => {
-        // TODO calculate winner of tic tac toe game
+        const {field} = this.state;
 
-        // horizontal rows
+        // horizoncal rows
         for(let i = 0; i <= 6; i+=3 ) {
-            if(this.state.field[i] === 0  &&
-                this.state.field[i + 1] === 0 &&
-                this.state.field[i + 2] === 0 ) {
-                    alert("winner!")
-                }
+            if(field[i] === 0  && field[i + 1] === 0 && field[i + 2] === 0) {
+                console.log('wins');
+            }
         }
 
         // vertical rows

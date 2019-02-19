@@ -5,10 +5,10 @@ const Field = (props) => {
 
     switch(props.player) {
         case 0:
-            styles.push('Field-o')
+            styles.push('Field-o');
             break;
         case 1:
-            styles.push('Field-x')
+            styles.push('Field-x');
             break;
     }
 
@@ -17,4 +17,4 @@ const Field = (props) => {
     )
 }
 
-export default Field
+export default Field;
