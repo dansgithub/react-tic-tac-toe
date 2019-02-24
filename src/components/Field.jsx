@@ -15,7 +15,7 @@ const Field = (props) => {
     }
 
     return (
-        <div className={styles.join(' ')} onClick={props.onClick}>{props.i}</div>
+        <div className={styles.join(' ')} onClick={props.onClick}>{props.magicSquareNumber}</div>
     )
 }
 

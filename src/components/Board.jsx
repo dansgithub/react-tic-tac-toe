@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import Field from './Field';
+import Dialog from './Dialog';
 
 class Board extends Component {
     state = {
         field: new Array(9).fill(null),
         player: true,
-        reset: null,
-        winner: null
+        magicSquareArray: [
+            4, 9, 2,
+            3, 5, 7,
+            8, 1, 6
+        ],
+        player1: 0,
+        player2: 0
     }
 
-    setField = (i) => {
+    setField = (i, magicSquareNumber) => {
         const { field, player } = this.state;
 
         if(field[i] === null) {
@@ -21,8 +27,7 @@ class Board extends Component {
             })
         }
 
-        // TODO: finish calculation of winner for both
-        this.calculateWinner();
+        this.setMagicSquareNumber(magicSquareNumber);
     }
 
     resetGame = () => {
@@ -30,36 +35,23 @@ class Board extends Component {
 
         this.setState({
             field: freshField,
-            winner: null
+            player1: 0,
+            player2: 0
         })
     }
 
-    calculateWinner = () => {
-        const { field } = this.state;
+    setMagicSquareNumber = (magicSquareNumber) => {
+        const { player, player1, player2 } = this.state;
 
+        if(player) {
+            this.setState({
+                player1: player1 + magicSquareNumber
+            })
 
-        for(let i = 0; i <= 6; i+=3 ) {
-            if(field[i] === "o"  && field[i + 1] === "o" && field[i + 2] === "o") {
-                this.setState({
-                    winner: true
-                })
-            }
-        }
-
-        for(let i = 0; i <=6; i++) {
-            if(field[i] === "o" && field[3 + i] === "o" && field[6 + i] === "o") {
-                this.setState({
-                    winner: true
-                })
-            }
-        }
-
-        for(let i = 0; i <=2; i+=2) {
-            if(field[i] === "o" && field[4] === "o" && field[8 - i] === "o") {
-                this.setState({
-                    winner: true
-                })
-            }
+        } else {
+            this.setState({
+                player2: player2 + magicSquareNumber
+            })
         }
     }
 
@@ -72,15 +64,20 @@ class Board extends Component {
                             <Field
                                 key={i}
                                 player={this.state.field[i]}
-                                onClick={() => this.setField(i)}
+                                onClick={() => this.setField(i, this.state.magicSquareArray[i])}
                                 i = {i}
+                                magicSquareNumber = {this.state.magicSquareArray[i]}
                             />
                         )
                     })
                 }
+
                 <button onClick={this.resetGame}>reset</button>
 
-                winner: {this.state.winner ?  "there is a winner" : "not yet"}
+                <div>
+                    {this.state.player1 === 15 ? <Dialog winner={"green"} /> : ""}
+                    {this.state.player2 === 15 ? <Dialog winner= {"pink"} /> : ""}
+                </div>
             </div>
         )
     }
